@@ -1,0 +1,8 @@
+{
+  "name": "consolidArteMobil",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "c835509a"
+}

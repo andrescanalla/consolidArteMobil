@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      Planilla
+    </ion-title>
+    <ion-buttons slot="end">
+        <ion-icon name="settings" routerLink="/setting"></ion-icon>              
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides  paginationType="arrows" pager="true" [options]="slideOpts" >
+    <ion-slide>
+      <h1>Control CTN</h1>      
+    </ion-slide>
+    <ion-slide>
+      <h1>Rel Horaria</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Rel Horaria</h1>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
