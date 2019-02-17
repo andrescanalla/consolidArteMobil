@@ -5,24 +5,92 @@
     </ion-buttons>
 
     <ion-title>
-      Planilla
+      Planilla {{ordenGranosForm.value.name}}
     </ion-title>
     <ion-buttons slot="end">
-        <ion-icon name="settings" routerLink="/setting"></ion-icon>              
-      </ion-buttons>
+      <ion-icon name="settings" routerLink="/setting"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-slides  paginationType="arrows" pager="true" [options]="slideOpts" >
+  <ion-slides pager="true" scrollbar="true" [options]="slideOpts">
     <ion-slide>
-      <h1>Control CTN</h1>      
+      <form [(formGroup)]="ordenGranosForm">
+        <h1>Control OTP </h1>
+        <ion-card>
+          <ion-card-content formGroupName="planilla">
+            <ion-item>
+              <ion-label position="stacked">Estado de CTN:</ion-label>
+              <ion-textarea name="estadoCTN" formControlName="estadoCTN" #estadoCTN></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Acondicionamiento:</ion-label>
+              <ion-textarea name="acondicionamiento" formControlName="acondicionamiento" #acondicionamiento>
+              </ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Fumigante:</ion-label>
+              <ion-textarea name="fumigante" formControlName="fumigante" #fumigante></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Empresa Fumigante:</ion-label>
+              <ion-textarea name="empresaFum" formControlName="empresaFum" #empresaFum></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Marcas:</ion-label>
+              <ion-input name="marcas" formControlName="marcas" #marcas></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Envase:</ion-label>
+              <ion-textarea placeholder="BOLSAS DE 25KG CON ETIQUETA. . . ." name="envases" formControlName="envases"
+                #envases></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Muestras / CTN:</ion-label>
+              <ion-input name="muestrasCTN" formControlName="muestrasCTN" #muestrasCTN></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Muestras General:</ion-label>
+              <ion-input name="muestrasGeneral" formControlName="muestrasGeneral" #muestrasGeneral></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Otras Muestras:</ion-label>
+              <ion-input name="otras" formControlName="otras" #otras></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Observaciones:</ion-label>
+              <ion-textarea name="comment" formControlName="comment" #comment></ion-textarea>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+        <ion-button *ngIf="isEdit" (click)="editOrdenGranos(ordenGranosForm.value)"
+          [disabled]="ordenGranosForm.pristine || ordenGranosForm.invalid" style="margin-bottom: 30px">Guardar
+        </ion-button>
+      </form>
+      <br>
     </ion-slide>
+    <ion-slide>
+
+      <form [(formGroup)]="ordenGranosForm">
+        <h1>Control CTN</h1>
+        
+          <ion-list formGroupName="planilla" *ngIf="ordenGranosForm.value.planilla.contenedores.length > 0">
+              <ion-item  detail *ngFor="let cont of ordenGranosForm.value.planilla.contenedores" >                  
+                  <ion-label> 
+                Contenedor: {{cont.romaneo.name}}
+                  </ion-label>
+              </ion-item>           
+          </ion-list>
+        
+      </form>
+    </ion-slide>
+
     <ion-slide>
       <h1>Rel Horaria</h1>
     </ion-slide>
     <ion-slide>
-      <h1>Rel Horaria</h1>
+      <h1>Muestras</h1>
     </ion-slide>
   </ion-slides>
 </ion-content>

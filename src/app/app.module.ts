@@ -12,6 +12,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { HttpRequestService } from './services/httpRequest.service';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { DataService } from './services/data.service';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,10 +29,15 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    HttpRequestService,
+    DataService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -9,3 +9,14 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+ion-toast.toast-success {
+    opacity: 0.8;       
+    color: var(--ion-color-success-contrast);
+    --background: var(--ion-color-success); 
+  }
+
+  .swiper-scrollbar {
+    top:0px;
+    bottom:inherit;
+  }

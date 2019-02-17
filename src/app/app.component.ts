@@ -1,8 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import * as firebase from 'firebase';
+import { environment } from 'src/environments/environment';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
+
+
+import { DataService } from './services/data.service';
+
 
 
 @Component({
@@ -10,42 +19,73 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Setting',
-      url: '/setting',
-      icon: 'settings'
-    },
-    {
-      title: 'Planilla',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'Fotos',
-      url: '/list',
-      icon: 'list'
-    },
-    {
-      title: 'Romaneo',
-      url: '/list',
-      icon: 'list'
-    }
-  ];
+
+  appPages: Array<any>;
+  ordenID: string;
+
+  @ViewChild('nav') nav: NavController;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private route1: ActivatedRoute,
+    private router: Router,
+    private data: DataService
   ) {
     this.initializeApp();
+    this.data.currentMessage.subscribe(message => {
+      if (this.appPages) {
+      this.appPages[1].url = 'home/' + message;
+      this.appPages[0].url = 'show/' + message;
+      console.log('appPages home url:', this.appPages[0].url, 'appPages show url:', this.appPages[1].url);
+      }
+    });
+    this.ordenID = this.route1.snapshot.paramMap.get('id');
+    this.appPages = [
+      {
+        title: 'Orden de Trabajo',
+        url: '/home',
+        icon: 'list-box'
+      },
+      {
+        title: 'Planilla',
+        url: '/home',
+        icon: 'clipboard'
+      },
+      {
+        title: 'Carga Romaneo',
+        url: '/list',
+        icon: 'list'
+      },
+      {
+        title: 'Fotos',
+        url: '/list',
+        icon: 'images'
+      },
+      {
+        title: 'Setting OTP',
+        url: '/setting',
+        icon: 'settings'
+      },
+      {
+        title: 'LogOut',
+        url: '/logout',
+        icon: 'log-out'
+      }
+    ];
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
     });
+    firebase.initializeApp(environment.firebase);
+  }
+
+  openPage(page) {
+    console.log('as', page.url);
+    this.router.navigateByUrl(page.url);
   }
 }

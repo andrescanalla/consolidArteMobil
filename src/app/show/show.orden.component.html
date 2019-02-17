@@ -1,0 +1,230 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      OTP: {{ordenGranosForm.value.name}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="settings" routerLink="/setting"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card-header>
+    <ion-card-subtitle>Orden de Trabajo Operativa</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <b>Fecha:</b>
+          </ion-col>
+          <ion-col size="9">
+            {{ordenGranosForm.value.date}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Hora:</b>
+          </ion-col>
+          <ion-col size="9">
+            {{ordenGranosForm.value.hour }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Buque:</b>
+          </ion-col>
+          <ion-col size="9">
+            {{ordenGranosForm.value.vessel}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Ref. Interna del Cliente:</b>
+          </ion-col>
+          <ion-col size="4">
+            {{ordenGranosForm.value.customerResf}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Cant. CNT:</b>
+          </ion-col>
+          <ion-col size="8">
+            {{ordenGranosForm.value.CTNQuantity}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Capacidad CNT:</b>
+          </ion-col>
+          <ion-col size="6">
+            {{ordenGranosForm.value.CTNCapacity}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Kilos:</b>
+          </ion-col>
+          <ion-col size="9">
+            {{ordenGranosForm.value.CTNCapacityKg}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Destino:</b>
+          </ion-col>
+          <ion-col size="9">
+            {{ordenGranosForm.value.destination}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Cargador:</b>
+          </ion-col>
+          <ion-col size="8">
+            {{ordenGranosForm.value.charger}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Comprador:</b>
+          </ion-col>
+          <ion-col size="8">
+            {{ordenGranosForm.value.buyer}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Acondicionamiento CNT: Si/No - Tipo:</b>
+          </ion-col>
+          <ion-col>
+            {{ordenGranosForm.value.conditioning}} - {{ordenGranosForm.value.conditioningDesc}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Fotos/Muestras:</b>
+          </ion-col>
+          <ion-col size="6">
+            {{ordenGranosForm.value.requirements}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Tipo Fumigacion:</b>
+          </ion-col>
+          <ion-col>
+            {{ordenGranosForm.value.fumigationType}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Empresa Fumigadora:</b>
+          </ion-col>
+          <ion-col size="5">
+            {{ordenGranosForm.value.fumigantCompany}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Encargado de Planta/Terminal:</b>
+          </ion-col>
+          <ion-col>
+            {{ordenGranosForm.value.plantManagerName}} - Tel: {{ordenGranosForm.value.plantManagerPhone}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <b>Despachante:</b>
+          </ion-col>
+          <ion-col size="7">
+            {{ordenGranosForm.value.customsBrokerName}} - Tel: {{ordenGranosForm.value.customsBrokerPhone}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card-header>
+    <ion-card-subtitle>Especificaciones de Calidad</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row *ngFor="let cal of ordenGranosForm.value.calidad">
+          <ion-col>
+            <b>{{cal.name}}</b>
+          </ion-col>
+          <ion-col>
+            {{cal.val}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card-header>
+    <ion-card-subtitle>Certificados a Emitir</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          {{ordenGranosForm.value.certificate1}}
+        </ion-row>
+        <ion-row>
+          {{ordenGranosForm.value.certificate2}}
+        </ion-row>
+        <ion-row>
+          {{ordenGranosForm.value.certificate3}}
+        </ion-row>
+        <ion-row>
+          {{ordenGranosForm.value.certificate4}}
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card-header>
+    <ion-card-subtitle>Datos de Facturacion </ion-card-subtitle>
+  </ion-card-header>
+  <ion-card>
+      <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        {{ordenGranosForm.value.billing}}
+      </ion-row>
+    </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card-header>
+    <ion-card-subtitle>Otras Especificaciones</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          {{ordenGranosForm.value.otherSpecifications1}}
+        </ion-row>
+        <ion-row>
+          {{ordenGranosForm.value.otherSpecifications2}}
+        </ion-row>
+        <ion-row>
+          {{ordenGranosForm.value.otherSpecifications3}}
+        </ion-row>
+        <ion-row>
+          {{ordenGranosForm.value.otherSpecifications4}}
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,67 +1,65 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { HttpRequestService } from '../services/httpRequest.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { DataService } from '../services/data.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-setting',
   templateUrl: 'setting.page.html',
   styleUrls: ['setting.page.scss']
 })
-export class SettingPage {
-  constructor(public alertController: AlertController) {
+export class SettingPage implements OnInit {
+
+  ordenes: any;
+  private route = '/ordenes';
+  public orden: any;
+
+  constructor(
+    public alertController: AlertController,
+    private ordenService: HttpRequestService,
+    private router: Router,
+    public toastController: ToastController,
+    private data: DataService
+    ) {
 
   }
 
-  slideOpts = {
-    effect: 'flip'
-  };
+  ngOnInit() {
+    this.getOrdenes();
+    console.log('ordenes:', this.ordenes);
+  }
 
-  public miArray = [
-    {
-      date: '15/01/2019',
-      name: '0015-19',
-      type: 'Carne',
-      commodity: 'Sabalo',
-      place: 'Victoria'
-    },
-    {
-      date: '20/01/2019',
-      name: '0021-19',
-      type: 'Granos',
-      commodity: 'Coriandro',
-      place: 'Villa Constitucion'
-    },
-    {
-      date: '30/01/2019',
-      name: '0032-19',
-      type: 'Granos',
-      commodity: 'Poroto Mung',
-      place: 'Villa Constitucion'
-    },
-    {
-      date: '02/02/2019',
-      name: '0035-19',
-      type: 'Granos',
-      commodity: 'Poroto Mung',
-      place: 'Villa Constitucion'
-    }
-  ];
+  getOrdenes() {
+    this.ordenes = this.ordenService.getAll(this.route).snapshotChanges();
+  }
 
-  async presentAlertConfirm(item) {
+  settingOrden(orden) {
+    this.data.changeMessage(orden.key);
+    this.presentToast('Your orden has been selected');
+    this.router.navigate(['/show', orden.key]);
+  }
+
+  async presentAlertConfirm(orden) {
     const alert = await this.alertController.create({
-      header: 'OTP: ' + item.name,
-      message:  '<strong>Date: </strong> ' + item.date +'<br> <strong>Place: </strong> ' + item.place + '<br> <strong>Commodity: </strong> ' + item.commodity,
+      header: `OTP: ${orden.payload.val().name}`,
+      message:  `<strong>Date: </strong> ${orden.payload.val().date} <br> <strong>Place: </strong> ${orden.payload.val().place}<br> <strong>Commodity: </strong> ${orden.payload.val().commodity}`,
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah', item.name );
+            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Select',
           handler: () => {
-            console.log('Confirm Okay');
+            console.log('Confirm Okay', orden);
+            this.orden = orden.key;
+            this.settingOrden(orden);
           }
         }
       ]
@@ -69,4 +67,14 @@ export class SettingPage {
 
     await alert.present();
   }
+
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      cssClass: 'toast-success'
+    });
+    toast.present();
+  }
+
 }
