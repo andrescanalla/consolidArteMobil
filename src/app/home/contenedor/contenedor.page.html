@@ -1,0 +1,116 @@
+<ion-header>
+    <ion-toolbar>     
+      <ion-buttons slot="start">
+            <ion-button color="dark" (click)="goBack()">
+              <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+  
+      <ion-title>
+        {{contenedorForm.value.romaneo.name}}
+      </ion-title>
+      <ion-buttons slot="end">
+            
+        <ion-icon name="more" routerLink="/setting"></ion-icon>
+    
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+    <ion-slides pager="true" scrollbar="true" [options]="slideOpts">
+        <ion-slide>
+                <form [(formGroup)]="contenedorForm">
+                        <h3>Romaneo</h3>
+                        <ion-card>
+                                <ion-card-content formGroupName="romaneo">
+                                    <ion-item>
+                                        <ion-label position="stacked">Fecha</ion-label>
+                                        <ion-input name="date" formControlName="date" #date></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="stacked">Kg Neto Neto</ion-label>
+                                        <ion-input name="kgNetosNetos" formControlName="kgNetosNetos" #kgNetosNetos ></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="stacked">Kg Neto</ion-label>
+                                        <ion-input name="kgNetos" formControlName="kgNetos" #kgNetos></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="stacked">Bolsas</ion-label>
+                                        <ion-input name="bolsas" formControlName="bolsas" #bolsas></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="stacked">Granel</ion-label>
+                                        <ion-input name="granel" formControlName="granel" #granel></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                            <ion-label position="stacked">Nº Lote</ion-label>
+                                            <ion-input name="lote" formControlName="lote" #lote></ion-input>
+                                        </ion-item>
+                                </ion-card-content>
+                        </ion-card>
+                        <ion-button (click)="editContenedor(contenedorForm.value)"
+          [disabled]="contenedorForm.pristine || contenedorForm.invalid" style="margin-bottom: 30px">Guardar
+        </ion-button>
+                </form>
+        </ion-slide>
+        <ion-slide>
+                <form [(formGroup)]="contenedorForm">
+                        <h3>Precintos</h3>
+                        <ion-card>
+                                <ion-card-content formGroupName="precintos">
+                                    <ion-item>
+                                        <ion-label position="stacked">PANEOS</ion-label>
+                                        <ion-input name="paneos" formControlName="paneos" #paneos></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="stacked">Aduana</ion-label>
+                                        <ion-input name="aduana" formControlName="aduana" #aduana ></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="stacked">Agencia</ion-label>
+                                        <ion-input name="agencia" formControlName="agencia" #agencia></ion-input>
+                                    </ion-item>                                   
+                                </ion-card-content>
+                        </ion-card>
+                        <ion-button (click)="editContenedor(contenedorForm.value)"
+          [disabled]="contenedorForm.pristine || contenedorForm.invalid" style="margin-bottom: 30px">Guardar
+        </ion-button>
+                </form>
+        </ion-slide>
+        <ion-slide>
+                <form [(formGroup)]="contenedorForm">
+                        <h3>Mercaderia Camiones Origen</h3>
+                        <ion-card>
+                                <ion-card-content formGroupName="camiones">
+                                    <ion-item>
+                                        <ion-label position="stacked">Chapa</ion-label>
+                                        <ion-input name="chapa" formControlName="chapa" #chapa></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="stacked">Bruto</ion-label>
+                                        <ion-input name="bruto" formControlName="bruto" #bruto ></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="stacked">Tara</ion-label>
+                                        <ion-input name="tara" formControlName="tara" #tara></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="stacked">Neto</ion-label>
+                                        <ion-input name="neto" formControlName="neto" #neto></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-label position="stacked">Origen</ion-label>
+                                        <ion-input name="origen" formControlName="origen" #origen></ion-input>
+                                    </ion-item>                                    
+                                </ion-card-content>
+                        </ion-card>
+                        <ion-button (click)="editContenedor(contenedorForm.value)"
+          [disabled]="contenedorForm.pristine || contenedorForm.invalid" style="margin-bottom: 30px">Guardar
+        </ion-button>
+                </form>
+        </ion-slide>
+  </ion-slides>
+</ion-content>
+    

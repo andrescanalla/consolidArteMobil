@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './services/user/auth.guard';
 import { ShowOrdenesComponent } from './show/show.orden.component';
+import { ContenedorPage } from './home/contenedor/contenedor.page';
+
 
 const routes: Routes = [
   {
@@ -10,7 +12,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'home/:id',
+    path: 'planilla',
     loadChildren: './home/home.module#HomePageModule',
     canActivate: [AuthGuard],
   },

@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { ContenedorPage } from './contenedor/contenedor.page';
+import { AuthGuard } from '../services/user/auth.guard';
 
 @NgModule({
   imports: [
@@ -14,11 +16,17 @@ import { HomePage } from './home.page';
     IonicModule,
     RouterModule.forChild([
       {
-        path: '',
-        component: HomePage
+        path: ':id/contenedor/:array',
+        component: ContenedorPage,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: ':id',
+        component: HomePage,
+        canActivate: [AuthGuard],
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, ContenedorPage]
 })
 export class HomePageModule {}

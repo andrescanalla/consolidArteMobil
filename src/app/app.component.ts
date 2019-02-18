@@ -36,7 +36,7 @@ export class AppComponent {
     this.initializeApp();
     this.data.currentMessage.subscribe(message => {
       if (this.appPages) {
-      this.appPages[1].url = 'home/' + message;
+      this.appPages[1].url = 'planilla/' + message;
       this.appPages[0].url = 'show/' + message;
       console.log('appPages home url:', this.appPages[0].url, 'appPages show url:', this.appPages[1].url);
       }

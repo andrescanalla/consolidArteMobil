@@ -23,7 +23,8 @@ export class HomePage implements OnInit {
     private route1: ActivatedRoute,
     private ordenService: HttpRequestService,
     private fb: FormBuilder,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private router: Router,
 
   ) { }
 
@@ -174,6 +175,10 @@ export class HomePage implements OnInit {
       cssClass: 'toast-success'
     });
     toast.present();
+  }
+
+  contenedor(array) {
+    this.router.navigate(['planilla/' + this.route1.snapshot.paramMap.get('id') + '/contenedor/' + array]);
   }
 
 }

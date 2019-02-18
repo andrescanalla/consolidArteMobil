@@ -76,8 +76,8 @@
         <h1>Control CTN</h1>
         
           <ion-list formGroupName="planilla" *ngIf="ordenGranosForm.value.planilla.contenedores.length > 0">
-              <ion-item  detail *ngFor="let cont of ordenGranosForm.value.planilla.contenedores" >                  
-                  <ion-label> 
+              <ion-item  detail *ngFor="let cont of ordenGranosForm.value.planilla.contenedores; let myIndex=index" >                  
+                  <ion-label (click)='contenedor(myIndex)'> 
                 Contenedor: {{cont.romaneo.name}}
                   </ion-label>
               </ion-item>           

@@ -31,7 +31,7 @@ import { DataService } from './services/data.service';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     StatusBar,
