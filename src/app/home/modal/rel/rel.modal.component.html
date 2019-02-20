@@ -1,0 +1,33 @@
+<!--Start Create/Edit modal -->
+  <div class="modal-header" [ngStyle]="{'background-color': isEdit? 'orange' : 'lightgreen'}">
+    <h5 *ngIf="!isEdit" class="modal-title" id="modal-basic-title">Rel Horaria</h5>
+    <h5 *ngIf="isEdit" class="modal-title" id="modal-basic-title">Editar Rel  Horaria</h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>        
+  <form [(formGroup)]="relForm">
+    <div class="modal-body">      
+        <div class="form-row">
+        <div class="form-group col-md-4">
+          <label>Fecha</label>
+          <input placeholder="15/02/2019 . . ." type="text" class="form-control" name="date" formControlName="date" #date/>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Hora</label>
+          <input placeholder="10:30 . . ." type="text" class="form-control" name="hour" formControlName="hour" #hour/>
+        </div>      
+        <div class="form-group col-md-4">
+          <label>Descripcion</label>
+          <input placeholder="Presentacion en Planta . . ." type="text" class="form-control" name="descripcion" formControlName="descripcion" #descripcion/>
+        </div>
+      </div> 
+    </div>  
+    <div class="modal-footer" >
+        <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">Cancelar</button>        
+        <button *ngIf="!isEdit" (click)="addRel(relForm.value)" [disabled]="relForm.pristine || relForm.invalid" class="btn btn-primary" >Agregar </button>
+        <button *ngIf="isEdit" (click)="editRel(relForm.value)" [disabled]="relForm.pristine || relForm.invalid" class="btn btn-primary" >Guardar</button>
+    </div>
+  </form>  
+
+<!--End Create/Edit modal -->   

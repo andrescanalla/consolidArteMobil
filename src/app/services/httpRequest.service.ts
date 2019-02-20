@@ -41,6 +41,10 @@ export class HttpRequestService {
    return  this.db.object(model).update(editRequest);
   }
 
+  editArray(model,  editRequest) {
+    return  this.db.object(model).set(editRequest);
+   }
+
   delete(model, deletRequest) {
    return  this.getRef(model).remove(deletRequest.key);
   }

@@ -1,0 +1,15 @@
+input {
+    font-size: 14px;
+}
+
+input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color:#a7a7a7 ;
+    font-size: 75%;
+   
+    opacity: 1; /* Firefox */
+  }
+
+  
+  
+  
+  

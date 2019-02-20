@@ -1,0 +1,94 @@
+<!--Start Create/Edit modal -->
+<div class="modal-header" [ngStyle]="{'background-color': isEdit? 'orange' : 'lightgreen'}">
+  <h5 *ngIf="!isEdit" class="modal-title" id="modal-basic-title">Agregar Muestra</h5>
+  <h5 *ngIf="isEdit" class="modal-title" id="modal-basic-title">Editar Muestra</h5>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [(formGroup)]="muestrasForm">
+  <div class="modal-body">
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label>Tipo de Muestra</label>
+        <select type="text" class="form-control" name="tipo" formControlName="tipo" #tipo>
+          <option value="" selected disabled hidden>Choose here</option>
+          <option  selected value="CTN">CTN</option>
+          <option value="CNJ GRAL">CNJ GRAL</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>Archivo</label>
+        <div class="card" style="margin-bottom: 15px">
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Cant. Muestras</label>
+                <input placeholder="Muestras..." type="text" class="form-control" name="cantArchivo"
+                  formControlName="cantArchivo" #cantArchivo />
+              </div>
+              <div class="form-group col-md-6">
+                <label>Nº de Precinto</label>
+                <input placeholder="Precinto..." type="text" class="form-control" name="precintoArchivo"
+                  formControlName="precintoArchivo" #precintoArchivo />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Cliente</label>
+        <div class="card" style="margin-bottom: 15px">
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Cant. Muestras</label>
+                <input placeholder="Muestras..." type="text" class="form-control" name="cantCliente"
+                  formControlName="cantCliente" #cantCliente />
+              </div>
+              <div class="form-group col-md-6">
+                <label>Nº de Precinto</label>
+                <input placeholder="Precinto..." type="text" class="form-control" name="precintoCliente"
+                  formControlName="precintoCliente" #precintoCliente />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Otro</label>
+        <div class="card" style="margin-bottom: 15px">
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Cant. Muestras</label>
+                <input placeholder="Muestras..." type="text" class="form-control" name="cantOtros"
+                  formControlName="cantOtros" #cantOtros />
+              </div>
+              <div class="form-group col-md-6">
+                <label>Nº de Precinto</label>
+                <input placeholder="Precinto..." type="text" class="form-control" name="precintoOtros"
+                  formControlName="precintoOtros" #precintoOtros />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
+    <button *ngIf="!isEdit" (click)="addMuestras(muestrasForm.value)" [disabled]="muestrasForm.pristine || muestrasForm.invalid"
+      class="btn btn-primary">Agregar Muestra</button>
+    <button *ngIf="isEdit" (click)="editMuestras(muestrasForm.value)" [disabled]="muestrasForm.pristine || muestrasForm.invalid"
+      class="btn btn-primary">Guardar</button>
+  </div>
+</form>
+
+<!--End Create/Edit modal -->

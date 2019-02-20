@@ -15,6 +15,10 @@ export class ContenedorPage implements OnInit {
     contenedorForm: FormGroup;
     arrayID: string;
     ordenID: string;
+    public isCollapsedControl = true;
+    public isCollapsedPre = true;
+    public isCollapsedCa = true;
+    public isCollapsedDa = true;
 
     constructor(
         private route1: ActivatedRoute,
@@ -79,6 +83,7 @@ export class ContenedorPage implements OnInit {
             this.route + '/' +  this.route1.snapshot.paramMap.get('id')  + '/planilla/contenedores/' + this.arrayID , contenedorForm
         ).then(res => {
             this.presentToast('Your data have been saved.');
+            this.goBack();
           }, error => {
             this.presentToast('Error.');
           });

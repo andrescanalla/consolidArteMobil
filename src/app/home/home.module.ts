@@ -8,6 +8,9 @@ import { HomePage } from './home.page';
 import { ContenedorPage } from './contenedor/contenedor.page';
 import { AuthGuard } from '../services/user/auth.guard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RelModalComponent } from './modal/rel/rel.modal.component';
+import { MuestrasModalComponent } from './modal/muestras/muestras.modal.component';
+import { ContenedorModalComponent } from './modal/contenedor/contenedor.modal.component';
 
 
 @NgModule({
@@ -30,6 +33,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       }
     ])
   ],
-  declarations: [HomePage, ContenedorPage]
+  declarations: [HomePage, ContenedorPage, RelModalComponent, MuestrasModalComponent, ContenedorModalComponent],
+  entryComponents: [
+    RelModalComponent,
+    MuestrasModalComponent,
+    ContenedorModalComponent
+  ]
 })
 export class HomePageModule {}

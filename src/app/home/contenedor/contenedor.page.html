@@ -1,24 +1,189 @@
 <ion-header>
-    <ion-toolbar>     
-      <ion-buttons slot="start">
+    <ion-toolbar>
+        <ion-buttons slot="start">
             <ion-button color="dark" (click)="goBack()">
-              <ion-icon name="arrow-back"></ion-icon>
+                <ion-icon name="arrow-back"></ion-icon>
             </ion-button>
-          </ion-buttons>
-  
-      <ion-title>
-        {{contenedorForm.value.romaneo.name}}
-      </ion-title>
-      <ion-buttons slot="end">
-            
-        <ion-icon name="more" routerLink="/setting"></ion-icon>
-    
-      </ion-buttons>
+        </ion-buttons>
+
+        <ion-title>
+            {{contenedorForm.value.romaneo.name}}
+        </ion-title>
+        <ion-buttons slot="end">
+
+            <ion-icon name="more" routerLink="/setting"></ion-icon>
+
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
-  
+
 <ion-content>
-    <ion-slides pager="true" scrollbar="true" [options]="slideOpts">
+    <form [(formGroup)]="contenedorForm">
+        <div class="modal-body">
+                <div class="row" style="border-bottom: 1px solid #eee">
+                        <ion-card-subtitle class="col-8">Datos</ion-card-subtitle>
+                        <div class="col-4" style="margin-bottom:15px">
+                            <button *ngIf="!isCollapsedDa" type="button" class="btn btn-outline-primary btn-sm float-right"
+                                (click)="isCollapsedDa = !isCollapsedDa" [attr.aria-expanded]="!isCollapsedDa"
+                                aria-controls="collapseOrdenDa">Contraer</button>
+                            <button *ngIf="isCollapsedDa" type="button" class="btn btn-outline-primary btn-sm float-right"
+                                (click)="isCollapsedDa = !isCollapsedDa" [attr.aria-expanded]="!isCollapsedDa"
+                                aria-controls="collapseOrdenDa">Expandir</button>
+                        </div>
+                        <div id="collapseOrdenDa" [ngbCollapse]="isCollapsedDa" class="col-12">
+                            <div class="card" style="margin-bottom: 15px">
+                                <div class="card-body" formGroupName="romaneo">
+                                        <div class="form-row" >
+                                                <div class="form-group col-5 col-md-6">
+                                                    <label>Fecha</label>
+                                                    <input type="text" class="form-control" name="date" formControlName="date" #date />
+                                                </div>
+                                                <div class="form-group col-7 col-md-6">
+                                                    <label>Contenedor</label>
+                                                    <input type="text" class="form-control" name="name" formControlName="name" #name />
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>
+        
+                        </div>
+                    </div>
+
+            
+
+            <div class="row" style="border-bottom: 1px solid #eee; margin-top: 15px">
+                <ion-card-subtitle class="col-8">Romaneo</ion-card-subtitle>
+                <div class="col-4" style="margin-bottom:15px">
+                    <button *ngIf="!isCollapsedControl" type="button" class="btn btn-outline-primary btn-sm float-right"
+                        (click)="isCollapsedControl = !isCollapsedControl" [attr.aria-expanded]="!isCollapsedControl"
+                        aria-controls="collapseOrdenTrabajo">Contraer</button>
+                    <button *ngIf="isCollapsedControl" type="button" class="btn btn-outline-primary btn-sm float-right"
+                        (click)="isCollapsedControl = !isCollapsedControl" [attr.aria-expanded]="!isCollapsedControl"
+                        aria-controls="collapseOrdenTrabajo">Expandir</button>
+                </div>
+                <div id="collapseOrdenTrabajo" [ngbCollapse]="isCollapsedControl" class="col-12">
+                    <div class="card" style="margin-bottom: 15px">
+                        <div class="card-body" formGroupName="romaneo">
+                            <div class="form-row">
+                                <div class="form-group col-6 col-md-2">
+                                    <label>Kg Neto Neto</label>
+                                    <input type="text" class="form-control" name="kgNetosNetos"
+                                        formControlName="kgNetosNetos" #kgNetosNetos />
+                                </div>
+                                <div class="form-group col-6 col-md-2">
+                                    <label>Kg Neto</label>
+                                    <input type="text" class="form-control" name="kgNetos" formControlName="kgNetos"
+                                        #kgNetos />
+                                </div>
+                                <div class="form-group col-6 col-md-2">
+                                    <label>Bolsas</label>
+                                    <input type="text" class="form-control" name="bolsas" formControlName="bolsas"
+                                        #bolsas />
+                                </div>
+                                <div class="form-group col-6 col-md-2">
+                                    <label>Granel</label>
+                                    <input type="text" class="form-control" name="granel" formControlName="granel"
+                                        #granel />
+                                </div>
+                                <div class="form-group col-12 col-md-4">
+                                    <label>Nº Lote</label>
+                                    <input type="text" class="form-control" name="lote" formControlName="lote" #lote />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" style="border-bottom: 1px solid #eee; margin-top: 15px">
+                <ion-card-subtitle class="col-8">Precintos</ion-card-subtitle>
+                <div class="col-4" style="margin-bottom:15px">
+                    <button *ngIf="!isCollapsedPre" type="button" class="btn btn-outline-primary btn-sm float-right"
+                        (click)="isCollapsedPre = !isCollapsedPre" [attr.aria-expanded]="!isCollapsedPre"
+                        aria-controls="collapseOrdenPre">Contraer</button>
+                    <button *ngIf="isCollapsedPre" type="button" class="btn btn-outline-primary btn-sm float-right"
+                        (click)="isCollapsedPre = !isCollapsedPre" [attr.aria-expanded]="!isCollapsedPre"
+                        aria-controls="collapseOrdenPre">Expandir</button>
+                </div>
+                <div id="collapseOrdenPre" [ngbCollapse]="isCollapsedPre" class="col-12">
+                    <div class="card" style="margin-bottom: 15px">
+                        <div class="card-body" formGroupName="precintos">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>PANEOS</label>
+                                    <input type="text" class="form-control" name="paneos" formControlName="paneos"
+                                        #paneos />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Aduana</label>
+                                    <input type="text" class="form-control" name="aduana" formControlName="aduana"
+                                        #aduana />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Agencia</label>
+                                    <input type="text" class="form-control" name="agencia" formControlName="agencia"
+                                        #agencia />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" style="border-bottom: 1px solid #eee; margin-top: 15px">
+                    <ion-card-subtitle class="col-8">Mercaderia Camiones Origen</ion-card-subtitle>
+                    <div class="col-4" style="margin-bottom:15px">
+                        <button *ngIf="!isCollapsedCa" type="button" class="btn btn-outline-primary btn-sm float-right"
+                            (click)="isCollapsedCa = !isCollapsedCa" [attr.aria-expanded]="!isCollapsedCa"
+                            aria-controls="collapseOrdenCa">Contraer</button>
+                        <button *ngIf="isCollapsedCa" type="button" class="btn btn-outline-primary btn-sm float-right"
+                            (click)="isCollapsedCa = !isCollapsedCa" [attr.aria-expanded]="!isCollapsedCa"
+                            aria-controls="collapseOrdenCa">Expandir</button>
+                    </div>
+                    <div id="collapseOrdenCa" [ngbCollapse]="isCollapsedCa" class="col-12">
+                        <div class="card" style="margin-bottom: 15px">
+                                <div class="card-body" formGroupName="camiones">
+                                        <div class="form-row">
+                                          <div class="form-group col-6 col-md-2">
+                                            <label>Chapa</label>
+                                            <input type="text" class="form-control" name="chapa" formControlName="chapa" #chapa />
+                                          </div>
+                                          <div class="form-group col-6 col-md-2">
+                                            <label>Bruto</label>
+                                            <input type="text" class="form-control" name="bruto" formControlName="bruto" #bruto />
+                                          </div>
+                                          <div class="form-group col-6 col-md-2">
+                                            <label>Tara</label>
+                                            <input type="text" class="form-control" name="tara" formControlName="tara" #tara />
+                                          </div>
+                                          <div class="form-group col-6 col-md-2">
+                                            <label>Neto</label>
+                                            <input type="text" class="form-control" name="neto" formControlName="neto" #neto />
+                                          </div>
+                                          <div class="form-group col-12 col-md-4">
+                                            <label>Bultos Origen</label>
+                                            <input type="text" class="form-control" name="origen" formControlName="origen" #origen />
+                                          </div>
+                                        </div>
+                                </div>
+                        </div>
+    
+                    </div>
+                </div> 
+
+        </div>
+        <div class="form-row float-right" style="margin: 0 15px 15px">
+            <button class="btn btn-light btn-sm" style="margin-right: 10px">Cancelar</button>
+            <button (click)="editContenedor(contenedorForm.value)"
+                [disabled]="contenedorForm.pristine || contenedorForm.invalid"
+                class="btn btn-primary btn-sm">Guardar</button>
+        </div>
+    </form>
+
+    <!--<ion-slides pager="true" scrollbar="true" [options]="slideOpts">
         <ion-slide>
                 <form [(formGroup)]="contenedorForm">
                         <h3>Romaneo</h3>
@@ -111,6 +276,5 @@
         </ion-button>
                 </form>
         </ion-slide>
-  </ion-slides>
+     </ion-slides> --->
 </ion-content>
-    

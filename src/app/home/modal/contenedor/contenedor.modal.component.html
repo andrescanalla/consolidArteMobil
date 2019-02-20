@@ -1,0 +1,38 @@
+<!--Start Create/Edit modal -->
+<div class="modal-header" [ngStyle]="{'background-color': isEdit? 'orange' : 'lightgreen'}">
+  <h5 *ngIf="!isEdit" class="modal-title" id="modal-basic-title">Nuevo Contenedor</h5>
+  <div *ngIf="isEdit" class=" col-md-3 modal-title" ><h5 style="margin-bottom: 0">Editar Contenedor</h5></div>
+  <div *ngIf="isEdit" class=" col-md-6 modal-title"  style="text-align: center"><h5 style="margin-bottom: 0">{{contenedorForm.value.romaneo.name}}</h5></div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [(formGroup)]="contenedorForm">
+  <div class="modal-body" >
+    <fieldset formGroupName="romaneo">     
+      
+          <div class="form-row">
+            <div class="form-group col-5 col-md-6">
+              <label>Fecha</label>
+              <input placeholder="15/02/2019. . ." type="text" class="form-control" name="date" formControlName="date" #date />
+            </div>
+            <div class="form-group col-7 col-md-6">
+              <label>Contenedor</label>
+              <input  placeholder="TEMU-569860-0. . ." type="text" class="form-control" name="name" formControlName="name" #name />
+            </div>
+          </div>          
+        
+    </fieldset>
+    
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
+    <button *ngIf="!isEdit" (click)="addContenedor(contenedorForm.value)" [disabled]="contenedorForm.pristine || contenedorForm.invalid"
+      class="btn btn-primary">Agregar</button>
+    <button *ngIf="isEdit" (click)="editContenedor(contenedorForm.value)" [disabled]="contenedorForm.pristine || contenedorForm.invalid"
+      class="btn btn-primary">Guardar</button>
+  </div>
+</form>
+
+<!--End Create/Edit modal -->
