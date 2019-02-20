@@ -45,12 +45,12 @@ export class AppComponent {
     this.appPages = [
       {
         title: 'Orden de Trabajo',
-        url: '/home',
+        url: '/setting',
         icon: 'list-box'
       },
       {
         title: 'Planilla',
-        url: '/home',
+        url: '/setting',
         icon: 'clipboard'
       },
       {

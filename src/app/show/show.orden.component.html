@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color='paneo'>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -14,6 +14,7 @@
 </ion-header>
 
 <ion-content>
+  <!--
   <ion-card-header>
     <ion-card-subtitle>Orden de Trabajo Operativa</ion-card-subtitle>
   </ion-card-header>
@@ -197,12 +198,12 @@
     <ion-card-subtitle>Datos de Facturacion </ion-card-subtitle>
   </ion-card-header>
   <ion-card>
-      <ion-card-content>
-    <ion-grid>
-      <ion-row>
-        {{ordenGranosForm.value.billing}}
-      </ion-row>
-    </ion-grid>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          {{ordenGranosForm.value.billing}}
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 
@@ -227,4 +228,331 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
+  -->
+  <form [(formGroup)]="ordenGranosForm">
+    <div class="modal-body">
+      <div class="row" style="border-bottom: 1px solid #eee">
+        <ion-card-subtitle class="col-8">Orden de Trabajo Operativa</ion-card-subtitle>
+
+        <div class="col-4" style="margin-bottom:15px">
+          <button *ngIf="!isCollapsedOrdenTrabajo" type="button" class="btn btn-outline-secondary btn-sm float-right"
+            (click)="isCollapsedOrdenTrabajo = !isCollapsedOrdenTrabajo" [attr.aria-expanded]="!isCollapsedOrdenTrabajo"
+            aria-controls="collapseOrdenTrabajo">Contraer</button>
+          <button *ngIf="isCollapsedOrdenTrabajo" type="button" class="btn btn-outline-secondary btn-sm float-right"
+            (click)="isCollapsedOrdenTrabajo = !isCollapsedOrdenTrabajo" [attr.aria-expanded]="!isCollapsedOrdenTrabajo"
+            aria-controls="collapseOrdenTrabajo">Expandir</button>
+        </div>
+        <div id="collapseOrdenTrabajo" [ngbCollapse]="isCollapsedOrdenTrabajo" class="col-12">
+          <div class="card" style="margin-bottom: 15px">
+            <div class="card-body">
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Orden:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="0231-18 . . . ." type="text" class="form-control" name="name"
+                    formControlName="name" #name />
+                  <input disabled type="hidden" class="form-control" name="type" formControlName="type" #type />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Fecha y Hora:</label>
+                <div class="col-sm-5 col-7">
+                  <input disabled placeholder="19/09/2018 . . . ." type="text" class="form-control" name="date"
+                    formControlName="date" #date />
+                </div>
+                <div class="col-sm-4 col-5">
+                  <input disabled placeholder="15:30 . . . ." type="text" class="form-control" name="hour"
+                    formControlName="hour" #hour />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Lugar:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder=" VILLA CONSTITUCION - ROSARIO . . . ." type="text" class="form-control"
+                    name="place" formControlName="place" #place />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Buque:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="CAP SAN JUAN . . . . " type="text" class="form-control" name="vessel"
+                    formControlName="vessel" #vessel />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Referencia Interna del Cliente:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="EX18-012.1 . . . . " type="text" class="form-control" name="customerResf"
+                    formControlName="customerResf" #customerRef />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Mercaderia:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="CORIANDRO . . . ." type="text" class="form-control" name="commodity"
+                    formControlName="commodity" #commodity />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Cantidad de CTN:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="2 CTN . . . ." type="text" class="form-control" name="CTNQuantity"
+                    formControlName="CTNQuantity" #CTNQuantity />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Capacidad de CTN:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="21 TN . . . ." type="text" class="form-control" name="CTNCapacity"
+                    formControlName="CTNCapacity" #name />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Kilos:</label>
+                <div class="col-sm-9">
+                  <textarea disabled placeholder="21 TN . . . ." type="text" class="form-control" name="CTNCapacityKg"
+                    formControlName="CTNCapacityKg" #CTNCapacityKg></textarea>
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Destino:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="BELAWAN, INDONESIA . . . . " type="text" class="form-control"
+                    name="destination" formControlName="destination" #destination />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Cargador:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="BRUNO TESAN . . . ." type="text" class="form-control" name="charger"
+                    formControlName="charger" #charger />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Comprador:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="ROYAL AGRO INTERNATIONAL FZE (5013447) . . . ." type="text"
+                    class="form-control" name="buyer" formControlName="buyer" #buyer />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Acondicionamiento de CTN:</label>
+                <div class="col-sm-7 form-check-inline">
+                  <label class="form-check-label">No</label>
+                  <div class="col-sm-3 input-group form-check-inline" style="margin:0 ">
+                    <div class="input-group-prepend" style="padding-left: 10px; height: 38px;">
+                      <div class="input-group-text">
+                        <input disabled type="radio" value="No" name="conditioning" formControlName="conditioning"
+                          #conditioning>
+                      </div>
+                    </div>
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input disabled type="radio" value="Si" name="conditioning" formControlName="conditioning"
+                          #conditioning>
+                      </div>
+                    </div>
+                  </div>
+                  <label class="form-check-label" style="margin-left: -15px; margin-right: 15px;">Si</label>
+                </div>
+                <div class="col-12 " style="margin-right: 0; margin-top:3px">
+
+
+                  <input disabled *ngIf="ordenGranosForm.value.conditioning=='No'" placeholder="TIPO . . . ."
+                    type="text" class="form-control" disabled name="conditioningDesc" formControlName="conditioningDesc"
+                    #conditioningDesc />
+                  <input disabled *ngIf="ordenGranosForm.value.conditioning=='Si'" placeholder="PISO . . . . "
+                    type="text" class="form-control" name="conditioningDesc" formControlName="conditioningDesc"
+                    #conditioningDesc />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Requerimientos:</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="FOTOS, MUESTRAS . . . ." type="text" class="form-control"
+                    name="requirements" formControlName="requirements" #requirements />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Tipo de Fumigacion</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="FOSFURO . . . ." type="text" class="form-control" name="fumigationType"
+                    formControlName="fumigationType" #fumigationType />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Empresa Fumigadora</label>
+                <div class="col-sm-9">
+                  <input disabled placeholder="AGROFUM . . . ." type="text" class="form-control" name="fumigantCompany"
+                    formControlName="fumigantCompany" #fumigantCompany />
+                </div>
+              </div>
+              <div class="form-row">
+                <label class="col-sm-3 col-form-label">Encargado de Planta/Terminal</label>
+                <div class="col-sm-5">
+                  <input disabled placeholder="NOMBRE . . . ." type="text" class="form-control" name="plantManagerName"
+                    formControlName="plantManagerName" #plantManagerName />
+                </div>
+                <div class="col-sm-4" style=" margin-top:3px">
+                  <input disabled placeholder="TELEFONO  . . . ." type="text" class="form-control"
+                    name="plantManagerPhone" formControlName="plantManagerPhone" #plantManagerPhone />
+                </div>
+              </div>
+              <div class="form-row" style="margin-bottom:15px">
+                <label class="col-sm-3 col-form-label">Despachante: Nombre y Tel</label>
+                <div class="col-sm-5">
+                  <input disabled placeholder="NOMBRE . . . ." type="text" class="form-control" name="customsBrokerName"
+                    formControlName="customsBrokerName" #customsBrokerName />
+                </div>
+                <div class="col-sm-4" style=" margin-top:3px">
+                  <input disabled placeholder="TELEFONO . . . ." type="text" class="form-control"
+                    name="customsBrokerPhone" formControlName="customsBrokerPhone" #customsBrokerPhone />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="border-bottom: 1px solid #eee; margin-top:15px">
+        <ion-card-subtitle class="col-8">Especificaciones de Calidad</ion-card-subtitle>
+        <div class="col-4" style="margin-bottom:15px">
+          <button *ngIf="!isCollapsedCalidad" type="button" class="btn btn-outline-secondary btn-sm float-right"
+            (click)="isCollapsedCalidad = !isCollapsedCalidad" [attr.aria-expanded]="!isCollapsedCalidad"
+            aria-controls="collapseCalidad"> Contraer </button>
+          <button *ngIf="isCollapsedCalidad" type="button" class="btn btn-outline-secondary btn-sm float-right"
+            (click)="isCollapsedCalidad = !isCollapsedCalidad" [attr.aria-expanded]="!isCollapsedCalidad"
+            aria-controls="collapseCalidad">Expandir</button>
+        </div>
+        <div id="collapseCalidad" [ngbCollapse]="isCollapsedCalidad" class="col-sm-12">
+          <div class="row" style="margin-top: -15px; margin-bottom: 5px">
+            <div class="col-sm-12">
+              <button class="btn btn-default btn-sm  " (click)="openCalidad(ordenGranosForm.value)"><i
+                  class="fas fa-plus"></i></button>
+            </div>
+          </div>
+          <div class="card" style="margin-bottom: 15px">
+            <div class="card-body" style="padding: 0 ">         
+                  
+                <table class="table table-striped table-hover" style="margin: 0 ">
+                   <tbody>
+                      <tr *ngFor="let cal of ordenGranosForm.value.calidad; let myIndexC=index" style="min-height: 43px">
+                        <td>{{cal.name}}:</td>
+                        <td> {{cal.val}}</td>                       
+                      </tr>
+                    </tbody>                   
+                  </table>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="border-bottom: 1px solid #eee; margin-top:15px">
+        <ion-card-subtitle class="col-8">Certificados a Emitir</ion-card-subtitle>
+        <div class="col-4" style="margin-bottom:15px">
+          <button *ngIf="!isCollapsedCertificado" type="button" class="btn btn-outline-secondary btn-sm float-right"
+            (click)="isCollapsedCertificado = !isCollapsedCertificado" [attr.aria-expanded]="!isCollapsedCertificado"
+            aria-controls="collapseCertificado"> Contraer </button>
+          <button *ngIf="isCollapsedCertificado" type="button" class="btn btn-outline-secondary btn-sm float-right"
+            (click)="isCollapsedCertificado = !isCollapsedCertificado" [attr.aria-expanded]="!isCollapsedCertificado"
+            aria-controls="collapseCertificado">Expandir</button>
+        </div>
+        <div id="collapseCertificado" [ngbCollapse]="isCollapsedCertificado" class="col-sm-12">
+          <div class="card" style="margin-bottom: 15px">
+            <div class="card-body">
+              <div class="form-row" style="margin-bottom:15px">
+                
+                <div class="col-sm-6">
+                  <input disabled placeholder="Nombre..." type="text" class="form-control" name="certificate1"
+                    formControlName="certificate1" #certificate1 />
+                </div>
+                
+                <div class="col-sm-6">
+                  <input disabled placeholder="Nombre..." type="text" class="form-control" name="certificate2"
+                    formControlName="certificate2" #certificate2 />
+                </div>
+              </div>
+              <div class="form-row">
+               
+                <div class="col-sm-6">
+                  <input disabled placeholder="Nombre..." type="text" class="form-control" name="certificate3"
+                    formControlName="certificate3" #certificate3 />
+                </div>
+                
+                <div class="col-sm-6">
+                  <input disabled placeholder="Nombre..." type="text" class="form-control" name="certificate4"
+                    formControlName="certificate4" #certificate4 />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="border-bottom: 1px solid #eee; margin-top:15px">
+        <ion-card-subtitle class="col-8">Datos de Facturacion </ion-card-subtitle>
+        <div class="col-4" style="margin-bottom:15px">
+          <button *ngIf="!isCollapsedFacturacion" type="button" class="btn btn-outline-secondary btn-sm float-right"
+            (click)="isCollapsedFacturacion = !isCollapsedFacturacion" [attr.aria-expanded]="!isCollapsedFacturacion"
+            aria-controls="collapseFacturacion"> Contraer </button>
+          <button *ngIf="isCollapsedFacturacion" type="button" class="btn btn-outline-secondary btn-sm float-right"
+            (click)="isCollapsedFacturacion = !isCollapsedFacturacion" [attr.aria-expanded]="!isCollapsedFacturacion"
+            aria-controls="collapseFacturacion">Expandir</button>
+        </div>
+        <div id="collapseFacturacion" [ngbCollapse]="isCollapsedFacturacion" class="col-sm-12">
+          <div class="card" style="margin-bottom: 15px">
+            <div class="card-body">
+              <div class="form-row">
+                
+                <div class="col-sm-12">
+                  <input disabled placeholder="Nombre..." type="text" class="form-control" name="billing"
+                    formControlName="billing" #billing />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="border-bottom: 1px solid #eee; margin-top:15px">
+        <ion-card-subtitle class="col-8">Otras Especificaciones</ion-card-subtitle>
+        <div class="col-4" style="margin-bottom:15px">
+          <button *ngIf="!isCollapsedOtras" type="button" class="btn btn-outline-secondary btn-sm float-right"
+            (click)="isCollapsedOtras = !isCollapsedOtras" [attr.aria-expanded]="!isCollapsedOtras"
+            aria-controls="collapseOtras"> Contraer </button>
+          <button *ngIf="isCollapsedOtras" type="button" class="btn btn-outline-secondary btn-sm float-right"
+            (click)="isCollapsedOtras = !isCollapsedOtras" [attr.aria-expanded]="!isCollapsedOtras"
+            aria-controls="collapseOtras">Expandir</button>
+        </div>
+        <div id="collapseOtras" [ngbCollapse]="isCollapsedOtras" class="col-sm-12">
+          <div class="card" style="margin-bottom: 15px">
+            <div class="card-body">
+              <div class="form-row" style="margin-bottom:15px">
+                
+                <div class="col-sm-6">
+                  <textarea placeholder="Especificacion..." type="text" class="form-control" name="otherSpecifications1"
+                    formControlName="otherSpecifications1" #otherSpecifications1></textarea>
+                </div>
+                
+                <div class="col-sm-6">
+                  <textarea placeholder="Especificacion..." type="text" class="form-control" name="otherSpecifications2"
+                    formControlName="otherSpecifications2" #otherSpecifications2></textarea>
+                </div>
+              </div>
+              <div class="form-row">
+                
+                <div class="col-sm-6">
+                  <textarea placeholder="Especificacion..." type="text" class="form-control" name="otherSpecifications3"
+                    formControlName="otherSpecifications3" #otherSpecifications3></textarea>
+                </div>
+                
+                <div class="col-sm-6">
+                  <textarea placeholder="Especificacion..." type="text" class="form-control" name="otherSpecifications4"
+                    formControlName="otherSpecifications4" #otherSpecifications4></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </form>
 </ion-content>

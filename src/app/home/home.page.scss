@@ -10,10 +10,80 @@ ion-card {
  
 }
 ion-slide {
-  background-color: #f1f1f1;  
-  min-height: -webkit-fill-available;
+  
   align-items: start;
 }
+
+
+   
+      
+
+    .ion-color-paneo {
+      --ion-color-base: #13a4da;
+      --ion-color-base-rgb: 56, 128, 255;
+      --ion-color-contrast: #ffffff;
+      --ion-color-contrast-rgb: 255,255,255;
+      --ion-color-shade:#3171e0;
+      --ion-color-tint: #4c8dff;
+    }
+
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color:#a7a7a7 ;
+      font-size: 80%;
+     
+      opacity: 1; /* Firefox */
+    }
+    
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color:#a7a7a7 ;
+      font-size: 80%;
+    }
+    
+    ::-ms-input-placeholder { /* Microsoft Edge */
+      color:#a7a7a7 ;
+      font-size: 80%;
+    }
+
+    input.ng-untouched.ng-invalid {
+      background-color:#f1f1f1;
+    }
+  
+    input.ng-touched.ng-invalid {
+      background-color:#f1f1f1;
+    }
+  
+    input.ng-dirty.ng-invalid {
+      background-color:#f1f1f1;
+    }
+
+    input.ng-valid {
+      background-color:lemonchiffon;
+    }
+
+    textarea.ng-valid {
+      background-color: lemonchiffon;
+    }
+    
+    
+    input:focus-within {
+      background-color: #ffffff;
+  }
+
+  textarea:focus-within {
+    background-color: #ffffff;
+}
+  .card{
+    border-color:#007bff;
+  }
+  ion-card-subtitle{
+    color: #007bff;
+  }
+
+  
+
+  
+
+  
 
 
 

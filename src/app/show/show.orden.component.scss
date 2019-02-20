@@ -3,4 +3,38 @@
     background-color: #f1f1f1;
     margin-top: 0;
   }
-  
+
+  .ion-color-paneo {
+    --ion-color-base: #13a4da;
+    --ion-color-base-rgb: 56, 128, 255;
+    --ion-color-contrast: #ffffff;
+    --ion-color-contrast-rgb: 255,255,255;
+    --ion-color-shade:#3171e0;
+    --ion-color-tint: #4c8dff;
+  }
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: lightblue;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:#a7a7a7 ;
+  font-size: 80%;
+ 
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:#a7a7a7 ;
+  font-size: 80%;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color:#a7a7a7 ;
+  font-size: 80%;
+}
+
+.card{
+  border-color:#6c757d;
+}

@@ -18,6 +18,12 @@ export class HomePage implements OnInit {
   isEdit: boolean;
   showCarnes = true;
   showGranos = true;
+  public isCollapsedControl = true;
+  public isCollapsedCalidad = true;
+  public isCollapsedCertificado = true;
+  public isCollapsedFacturacion = true;
+  public isCollapsedOtras = true;
+  location: any;
 
   constructor(
     private route1: ActivatedRoute,
@@ -159,6 +165,8 @@ export class HomePage implements OnInit {
     }
     return true;
   }
+
+  
 
   editOrdenGranos(ordenGranosForm) {
     this.ordenService.edit(this.route + '/' +  this.route1.snapshot.paramMap.get('id') , ordenGranosForm)

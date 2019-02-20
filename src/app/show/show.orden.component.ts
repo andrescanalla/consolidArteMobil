@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { HttpRequestService } from '../services/httpRequest.service';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm, } from '@angular/forms';
 
 
 import { Router, Route, ActivatedRoute } from '@angular/router';
@@ -23,7 +23,7 @@ export class ShowOrdenesComponent implements OnInit {
   private route = '/ordenes';
   ordenCarneForm: FormGroup;
   ordenGranosForm: FormGroup;
-  public isCollapsedOrdenTrabajo = false;
+  public isCollapsedOrdenTrabajo = true;
   public isCollapsedCalidad = true;
   public isCollapsedCertificado = true;
   public isCollapsedFacturacion = true;

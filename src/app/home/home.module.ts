@@ -7,11 +7,14 @@ import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 import { ContenedorPage } from './contenedor/contenedor.page';
 import { AuthGuard } from '../services/user/auth.guard';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    NgbModule,
     ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild([

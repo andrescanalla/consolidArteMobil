@@ -50,7 +50,6 @@ export class SettingPage implements OnInit {
         {
           text: 'Cancel',
           role: 'cancel',
-          cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }

@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header >
+  <ion-toolbar color="paneo">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -8,16 +8,208 @@
       Planilla {{ordenGranosForm.value.name}}
     </ion-title>
     <ion-buttons slot="end">
-      <ion-icon name="settings" routerLink="/setting"></ion-icon>
+      <ion-icon name="more" routerLink="/setting"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-slides pager="true" scrollbar="true" [options]="slideOpts">
+  
+    <form [(formGroup)]="ordenGranosForm">
+        <div class="modal-body" >
+          <div class="row" style="border-bottom: 1px solid #eee">
+              <ion-card-subtitle class="col-8">Control Orden de Trabajo</ion-card-subtitle>                
+            <div class="col-4" style="margin-bottom:15px">
+              <button *ngIf="!isCollapsedControl" type="button" class="btn btn-outline-primary btn-sm float-right"
+                (click)="isCollapsedControl = !isCollapsedControl" [attr.aria-expanded]="!isCollapsedControl"
+                aria-controls="collapseOrdenTrabajo">Contraer</button>
+              <button *ngIf="isCollapsedControl" type="button" class="btn btn-outline-primary btn-sm float-right"
+                (click)="isCollapsedControl = !isCollapsedControl" [attr.aria-expanded]="!isCollapsedControl"
+                aria-controls="collapseOrdenTrabajo">Expandir</button>
+            </div>
+            <div id="collapseOrdenTrabajo" [ngbCollapse]="isCollapsedControl" class="col-12">
+              <div class="card" style="margin-bottom: 15px">
+                <div class="card-body">
+                    <div class="form-row" style="margin-bottom:15px">
+                        <label class="col-sm-2 col-form-label">Fecha y Hora:</label>
+                        <div class="col-6">
+                          <input placeholder="19/09/2018 . . . ." type="text" class="form-control" name="date"
+                            formControlName="date" #date />
+                        </div>
+                        <div class="col-6">
+                          <input  placeholder="15:30 . . . ." type="text" class="form-control" name="hour"
+                            formControlName="hour" #hour />
+                        </div>
+                      </div>                      
+                  <div formGroupName="planilla">
+                      <div class="form-row" style="margin-bottom:15px">
+                          <label class="col-form-label">Origen Mercaderia</label>
+                          <div class="col-12">
+                              <input type="text" class="form-control" name="origen" formControlName="origen" #origen />
+                          </div>
+                        </div>    
+                  <div class="form-row" style="margin-bottom:15px">
+                    <label class="col-form-label">Estado de CTN</label>
+                    <div class="col-12">
+                      <textarea  class="form-control" name="estadoCTN" formControlName="estadoCTN" #estadoCTN ></textarea>                     
+                    </div>
+                  </div>
+                  <div class="form-row" style="margin-bottom:15px">
+                    <label class="col-sm-2 col-form-label">Acondicionamiento</label>
+                    <div class="col-12">
+                      <input type="text"class="form-control" name="acondicionamiento" formControlName="acondicionamiento" #acondicionamiento />
+                    </div>                    
+                  </div>
+                  <div class="form-row" style="margin-bottom:15px">
+                    <label class="col-sm-2 col-form-label">Fumigante</label>
+                    <div class="col-sm-4">
+                      <input class="form-control" name="fumigante" formControlName="fumigante" #fumigante/>
+                    </div>
+                  </div>
+                  <div class="form-row" style="margin-bottom:15px">
+                    <label class="col-sm-2 col-form-label">Empresa Fumigante</label>
+                    <div class="col-sm-4">
+                      <input  class="form-control" name="empresaFum" formControlName="empresaFum" #empresaFum />
+                    </div>
+                  </div>
+                  <div class="form-row" style="margin-bottom:15px">
+                    <label class="col-sm-2 col-form-label">Marcas</label>
+                    <div class="col-sm-4">
+                      <input class="form-control" name="marcas" formControlName="marcas" #marcas/>
+                    </div>
+                  </div>
+                  <div class="form-row" style="margin-bottom:15px">
+                    <label class="col-sm-2 col-form-label">Envase</label>
+                    <div class="col-sm-4">
+                      <textarea class="form-control" placeholder="BOLSAS DE 25KG CON ETIQUETA. . . ." name="envases" formControlName="envases"
+                      #envases></textarea>
+                    </div>
+                  </div>
+                  <div class="form-row" style="margin-bottom:15px">
+                    <label class="col-sm-2 col-form-label">Muestras / CTN</label>
+                    <div class="col-sm-4">
+                      <input class="form-control" name="muestrasCTN" formControlName="muestrasCTN" #muestrasCTN/>
+                    </div>
+                  </div>
+                  <div class="form-row" style="margin-bottom:15px">
+                    <label class="col-sm-2 col-form-label">Muestras General</label>
+                    <div class="col-sm-4">
+                      <input class="form-control" name="muestrasGeneral" formControlName="muestrasGeneral" #muestrasGeneral/>
+                    </div>
+                  </div>
+                  <div class="form-row" style="margin-bottom:15px">
+                    <label class="col-sm-2 col-form-label">Otras Muestras</label>
+                    <div class="col-sm-4">
+                      <input class="form-control" name="otras" formControlName="otras" #otras/>
+                    </div>
+                  </div>
+                  <div class="form-row" style="margin-bottom:15px">
+                    <label class="col-sm-2 col-form-label">Observaciones</label>
+                    <div class="col-sm-4">
+                      <textarea class="form-control" name="comment" formControlName="comment" #comment></textarea>
+                    </div>
+                  </div>                  
+                </div>
+              </div>
+              </div>
+              <div class="form-row float-right" style="margin: 0 0 15px">
+                  <button type="button" class="btn btn-light btn-sm" style="margin-right: 10px" (click)="isCollapsedControl = !isCollapsedControl" [attr.aria-expanded]="!isCollapsedControl"
+                  aria-controls="collapseOrdenTrabajo">Cancelar</button>           
+                  <button *ngIf="isEdit" (click)="editOrdenGranos(ordenGranosForm.value)" [disabled]="ordenGranosForm.pristine || ordenGranosForm.invalid"
+                    class="btn btn-primary btn-sm" (click)="isCollapsedControl = !isCollapsedControl" [attr.aria-expanded]="!isCollapsedControl"
+                    aria-controls="collapseOrdenTrabajo">Guardar</button>
+                </div>
+            </div>
+          </div>
+          <div class="row" style="border-bottom: 1px solid #eee; margin-top:15px">
+              <ion-card-subtitle class="col-8">Control Contenedor</ion-card-subtitle>               
+            <div class="col-4" style="margin-bottom:15px">
+              <button *ngIf="!isCollapsedCalidad" type="button" class="btn btn-outline-primary btn-sm float-right"
+                (click)="isCollapsedCalidad = !isCollapsedCalidad" [attr.aria-expanded]="!isCollapsedCalidad"
+                aria-controls="collapseCalidad"> Contraer </button>
+              <button *ngIf="isCollapsedCalidad" type="button" class="btn btn-outline-primary btn-sm float-right"
+                (click)="isCollapsedCalidad = !isCollapsedCalidad" [attr.aria-expanded]="!isCollapsedCalidad"
+                aria-controls="collapseCalidad">Expandir</button>
+            </div>
+            <div id="collapseCalidad" [ngbCollapse]="isCollapsedCalidad" class="col-sm-12">
+              <div class="row" style="margin-top: -15px; margin-bottom: 5px">
+                <div class="col-sm-12">
+                  <button class="btn btn-default btn-sm  " (click)="openCalidad(ordenGranosForm.value)"><i
+                      class="fas fa-plus"></i></button>
+                </div>
+              </div>
+              <div class="card" style="margin-bottom: 15px">
+                <div class="card-body" style="padding: 0 ">         
+                      
+                    
+                        
+                        
+                          <div formGroupName="planilla" *ngIf="ordenGranosForm.value.planilla.contenedores.length > 0">
+                              <ion-item  detail *ngFor="let cont of ordenGranosForm.value.planilla.contenedores; let myIndex=index" main >                  
+                                  <ion-label (click)='contenedor(myIndex)'> 
+                                Contenedor: {{cont.romaneo.name}}
+                                  </ion-label>
+                              </ion-item>           
+                            </div>
+                        
+                      
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="border-bottom: 1px solid #eee; margin-top:15px">
+              <ion-card-subtitle class="col-8">Time Log</ion-card-subtitle>               
+            <div class="col-4" style="margin-bottom:15px">
+              <button *ngIf="!isCollapsedCertificado" type="button" class="btn btn-outline-primary btn-sm float-right"
+                (click)="isCollapsedCertificado = !isCollapsedCertificado" [attr.aria-expanded]="!isCollapsedCertificado"
+                aria-controls="collapseCertificado"> Contraer </button>
+              <button *ngIf="isCollapsedCertificado" type="button" class="btn btn-outline-primary btn-sm float-right"
+                (click)="isCollapsedCertificado = !isCollapsedCertificado" [attr.aria-expanded]="!isCollapsedCertificado"
+                aria-controls="collapseCertificado">Expandir</button>
+            </div>
+            <div id="collapseCertificado" [ngbCollapse]="isCollapsedCertificado" class="col-sm-12">
+              <div class="card" style="margin-bottom: 15px">
+                <div class="card-body">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="border-bottom: 1px solid #eee; margin-top:15px">
+              <ion-card-subtitle class="col-8">Muestras</ion-card-subtitle>                  
+            <div class="col-4" style="margin-bottom:15px">
+              <button *ngIf="!isCollapsedFacturacion" type="button" class="btn btn-outline-primary btn-sm float-right"
+                (click)="isCollapsedFacturacion = !isCollapsedFacturacion" [attr.aria-expanded]="!isCollapsedFacturacion"
+                aria-controls="collapseFacturacion"> Contraer </button>
+              <button *ngIf="isCollapsedFacturacion" type="button" class="btn btn-outline-primary btn-sm float-right"
+                (click)="isCollapsedFacturacion = !isCollapsedFacturacion" [attr.aria-expanded]="!isCollapsedFacturacion"
+                aria-controls="collapseFacturacion">Expandir</button>
+            </div>
+            <div id="collapseFacturacion" [ngbCollapse]="isCollapsedFacturacion" class="col-sm-12">
+              <div class="card" style="margin-bottom: 15px">
+                <div class="card-body">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+    
+    
+      </form>
+
+
+ <!-- <ion-slides pager="true" scrollbar="true" [options]="slideOpts">
+
     <ion-slide>
-      <form [(formGroup)]="ordenGranosForm">
-        <h1>Control OTP </h1>
+
+        
+
+      <form [(formGroup)]="ordenGranosForm" >
+        <h3>Control OTP </h3>
         <ion-card>
           <ion-card-content formGroupName="planilla">
             <ion-item>
@@ -75,13 +267,13 @@
       <form [(formGroup)]="ordenGranosForm">
         <h1>Control CTN</h1>
         
-          <ion-list formGroupName="planilla" *ngIf="ordenGranosForm.value.planilla.contenedores.length > 0">
-              <ion-item  detail *ngFor="let cont of ordenGranosForm.value.planilla.contenedores; let myIndex=index" >                  
+          <div formGroupName="planilla" *ngIf="ordenGranosForm.value.planilla.contenedores.length > 0">
+              <ion-item  detail *ngFor="let cont of ordenGranosForm.value.planilla.contenedores; let myIndex=index" main >                  
                   <ion-label (click)='contenedor(myIndex)'> 
                 Contenedor: {{cont.romaneo.name}}
                   </ion-label>
               </ion-item>           
-          </ion-list>
+            </div>
         
       </form>
     </ion-slide>
@@ -93,4 +285,5 @@
       <h1>Muestras</h1>
     </ion-slide>
   </ion-slides>
+  -->
 </ion-content>

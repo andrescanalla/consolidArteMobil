@@ -18,6 +18,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DataService } from './services/data.service';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { DataService } from './services/data.service';
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule.forRoot(),
   ],
   providers: [
     StatusBar,
