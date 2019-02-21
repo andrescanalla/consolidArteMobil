@@ -48,7 +48,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'list',
+    path: 'carga',
     loadChildren: './list/list.module#ListPageModule',
     canActivate: [AuthGuard],
   }

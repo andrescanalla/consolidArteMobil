@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpRequestService } from '../services/httpRequest.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -6,34 +9,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
-  }
+  ordenGranosForm: any;
+
+  constructor(
+    private route1: ActivatedRoute,
+    private ordenService: HttpRequestService,
+    private fb: FormBuilder,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.createForm();
+    const ordenID = this.route1.snapshot.paramMap.get('id');
+    this.updateForm(ordenID);
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+  createForm() {
+  }
+
+  updateForm(orderId) {
+    this.ordenService.getById('/ordenes/' + orderId + '/planilla/contenedores').valueChanges().subscribe(orderObject => {
+      this.ordenGranosForm = orderObject;
+      console.log('ordengranosForm:', this.ordenGranosForm, 'orderObjet:', orderObject);
+    });
+  }
+
+  contenedor(array) {
+    this.router.navigate(['carga/' + this.route1.snapshot.paramMap.get('id') + '/contenedor/' + array]);
+  }
+
 }

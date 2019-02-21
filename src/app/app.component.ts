@@ -38,6 +38,7 @@ export class AppComponent {
       if (this.appPages) {
       this.appPages[1].url = 'planilla/' + message;
       this.appPages[0].url = 'show/' + message;
+      this.appPages[2].url = 'carga/' + message;
       console.log('appPages home url:', this.appPages[0].url, 'appPages show url:', this.appPages[1].url);
       }
     });
@@ -55,7 +56,7 @@ export class AppComponent {
       },
       {
         title: 'Carga Romaneo',
-        url: '/list',
+        url: '/setting',
         icon: 'list'
       },
       {
