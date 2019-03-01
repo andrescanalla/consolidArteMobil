@@ -83,7 +83,7 @@ export class ContenedorPage implements OnInit {
             this.route + '/' +  this.route1.snapshot.paramMap.get('id')  + '/planilla/contenedores/' + this.arrayID , contenedorForm
         ).then(res => {
             this.presentToast('Your data have been saved.');
-            this.goBack();
+           
           }, error => {
             this.presentToast('Error.');
           });
